@@ -4,6 +4,9 @@ const mongoose = require('mongoose')
 const path = require('path');
 var Bet = require("./schema.js");
 var bodyParser = require('body-parser');
+const uri = "mongodb+srv://puechce:Chaptal75@cluster0.npqtt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+
+
 
 
 app.use(express.static('build'))
@@ -13,7 +16,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 //Database connection 
-const uri = "mongodb+srv://puechce:Chaptal75@cluster0.npqtt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+mongoose.Promise = global.Promise;
 mongoose.connect(uri, {  useNewUrlParser: true,  useUnifiedTopology: true}).then(() =>
  {  console.log('MongoDB Connected')}).catch(err => console.log(err))
 
@@ -21,7 +24,7 @@ mongoose.connect(uri, {  useNewUrlParser: true,  useUnifiedTopology: true}).then
 // Serving the react app boilerplate
 app.use(express.static(path.join(__dirname, 'client/build')));
 
-app.get('*', (req, res) => {
+app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'client/build/index.html'))
 })
 

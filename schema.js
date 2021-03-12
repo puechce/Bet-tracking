@@ -11,14 +11,3 @@ var Bet = new Schema ({
 
 var Bet = mongoose.model('bet', Bet);
 module.exports = Bet; 
-
-/*
-var match = new Bet({name:'barca'})
-match.save()
-   .then(doc => {
-     console.log(doc)
-   })
-   .catch(err => {
-     console.error(err)
-   })
-*/
