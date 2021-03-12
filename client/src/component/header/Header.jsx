@@ -4,7 +4,7 @@ import "./header.css";
 function Header(){
     return ( 
         <header>
-                <h1>Bet-Tracking</h1>
+                <h1>Bet Tracking</h1>
         </header>
     )
 }
