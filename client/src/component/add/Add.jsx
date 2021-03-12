@@ -10,7 +10,7 @@ function Add(){
     return ( 
         <add>
             <h2>Ajoute ton pari 💪</h2>      
-            <form method="post" action="http://localhost:8000/test">
+            <form method="post" action="/test">
                  <input id="match" name="name"  type="text" defaultValue="Quel match chef ? ⚽" onClick={()=>empty('match')} />
                  <input type="date" name="date" defaultValue="Date du match ?"/>
                  <input id="mise" name="bet" type="text" defaultValue="Tu mets combien ? 💸" onClick={()=>empty('mise')}/>
