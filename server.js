@@ -23,6 +23,13 @@ app.listen(process.env.PORT || 8000, () => {
   console.log(`listening on port ${process.env.PORT || 8000}`)
 });
 
+// Serving the react app boilerplate
+app.use(express.static(path.join(__dirname, 'client/build')));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client/build/index.html'))
+})
+
 app.post("/test", (req, res) => {
         var myData = new Bet(req.body);
         myData.save()
