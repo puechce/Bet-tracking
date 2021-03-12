@@ -4,7 +4,6 @@ const mongoose = require('mongoose')
 const path = require('path');
 var Bet = require("./schema.js");
 var bodyParser = require('body-parser');
-var router = express.Router();
 
 
 app.use(express.static('build'))
@@ -14,14 +13,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 //Database connection 
-/*mongoose.Promise = global.Promise;*/
 const uri = "mongodb+srv://puechce:Chaptal75@cluster0.npqtt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 mongoose.connect(uri, {  useNewUrlParser: true,  useUnifiedTopology: true}).then(() =>
  {  console.log('MongoDB Connected')}).catch(err => console.log(err))
-//Listenning port 
-app.listen(process.env.PORT || 8000, () => {
-  console.log(`listening on port ${process.env.PORT || 8000}`)
-});
+
 
 // Serving the react app boilerplate
 app.use(express.static(path.join(__dirname, 'client/build')));
@@ -41,5 +36,8 @@ app.post("/test", (req, res) => {
           });
 });     
 
+var port = process.env.PORT || 8080;
 
-module.exports = router;
+app.listen(port, () => {
+    console.log(`----- listening on port ${port}`.success);
+});
