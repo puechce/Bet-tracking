@@ -32,6 +32,7 @@ app.post("/test", (req, res) => {
             res.send("item saved to database");
           })
           .catch(err => {
+            console.log(err)
             res.status(400).send("unable to save to database");
           });
 });     
