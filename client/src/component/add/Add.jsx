@@ -20,7 +20,7 @@ function Add(){
           bet: '',
         },
         onSubmit : values =>{
-            fetch('http://localhost:8080/test',{
+            fetch('/test',{
                 method: "POST",
                 body: JSON.stringify(values),
                 headers: {
