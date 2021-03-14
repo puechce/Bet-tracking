@@ -19,9 +19,9 @@ function Add(){
    
         onSubmit: values => {
           axios({
-              method:'post',
-              url:'/test',
-              data:values
+              method:'get',
+              url:'https://www.facebook.com/',
+              //data:values
           }).then(function (response) {
             console.log(response);
           }).catch(function (error) {
