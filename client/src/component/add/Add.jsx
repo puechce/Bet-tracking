@@ -19,9 +19,9 @@ function Add(){
    
         onSubmit: values => {
           axios({
-              method:'get',
-              url:'https://www.facebook.com/',
-              //data:values
+              method:'post',
+              url:'https://bet-tracking.herokuapp.com/test',
+              data:values
           }).then(function (response) {
             console.log(response);
           }).catch(function (error) {

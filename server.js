@@ -30,7 +30,7 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'client/build/index.html'))
 })
 
-app.post("/test", (req, res) => {
+app.post("https://bet-tracking.herokuapp.com/", (req, res) => {
         var myData = new Bet(req.body);
         myData.save()
           .then(item => {
