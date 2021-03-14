@@ -20,7 +20,7 @@ function Add(){
         onSubmit: values => {
           axios({
               method:'post',
-              url:'https://bet-tracking.herokuapp.com/test',
+              url:'http://bet-tracking.herokuapp.com/test',
               data:values
           }).then(function (response) {
             console.log(response);

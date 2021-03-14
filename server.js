@@ -6,6 +6,7 @@ var Bet = require("./schema.js");
 var bodyParser = require('body-parser');
 var cors = require('cors')
 app.use(cors());
+const port = process.env.PORT || 8080;
 const uri = "mongodb+srv://puechce:Chaptal75@cluster0.npqtt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 
@@ -15,7 +16,7 @@ app.use(express.static('build'))
 
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 //Database connection 
 mongoose.Promise = global.Promise;
@@ -30,7 +31,7 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'client/build/index.html'))
 })
 
-app.post("https://bet-tracking.herokuapp.com/test", (req, res) => {
+app.post("http://bet-tracking.herokuapp.com/test", (req, res) => {
         var myData = new Bet(req.body);
         myData.save()
           .then(item => {
@@ -42,7 +43,7 @@ app.post("https://bet-tracking.herokuapp.com/test", (req, res) => {
           });
 });     
 
-var port = process.env.PORT || 8080;
+const port = process.env.PORT || 8080;
 
 app.listen(port, () => {
     console.log(`----- listening on port ${port}`.success);
