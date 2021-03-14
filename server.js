@@ -9,8 +9,14 @@ app.use(cors());
 const port = process.env.PORT || 8080;
 const uri = "mongodb+srv://puechce:Chaptal75@cluster0.npqtt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
-
-
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+     "Access-Control-Allow-Headers",
+     "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
 
 app.use(express.static('build'))
 
@@ -31,7 +37,7 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'client/build/index.html'))
 })
 
-app.post("http://bet-tracking.herokuapp.com/test", (req, res) => {
+app.post("https://bet-tracking.herokuapp.com/test", (req, res) => {
         var myData = new Bet(req.body);
         myData.save()
           .then(item => {
