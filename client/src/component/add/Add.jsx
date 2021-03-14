@@ -22,7 +22,11 @@ function Add(){
               method:'post',
               url:'/test',
               data:values
-          })
+          }).then(function (response) {
+            console.log(response);
+          }).catch(function (error) {
+            console.log(error);
+          });
           console.log(values)
         }
       });
