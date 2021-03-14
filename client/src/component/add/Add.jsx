@@ -9,15 +9,29 @@ function empty(id){
 }
 
 function Add(){
+
+    const options = {
+        method: 'POST',
+    }
     const formik = useFormik({
         initialValues: {
           name: '',
           date: '',
           bet: '',
         },
-   
-        onSubmit: values => {
-           await axios({
+        onSubmit : values =>{
+            fetch('http://localhost:8080/test',{
+                method: "POST",
+                body: JSON.stringify(values),
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                  },
+            })
+        }
+   /*
+         onSubmit: values => {
+            axios({
               method:'post',
               url:'https://bet-tracking.herokuapp.com/test',
               data:values
@@ -28,6 +42,7 @@ function Add(){
           });
           console.log(values)
         }
+    */
       });
 
     return ( 
