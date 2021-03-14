@@ -1,8 +1,7 @@
 import React from "react";
 import "./add.css";
 import { useFormik } from 'formik';
-const axios = require('axios');
-
+import axios from 'axios';
 
 
 function empty(id){
