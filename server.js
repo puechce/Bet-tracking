@@ -49,7 +49,6 @@ app.post("https://bet-tracking.herokuapp.com/test", (req, res) => {
           });
 });     
 
-const port = process.env.PORT || 8080;
 
 app.listen(port, () => {
     console.log(`----- listening on port ${port}`.success);
