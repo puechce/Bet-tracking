@@ -21,8 +21,9 @@ function Add(){
           axios({
               method:'post',
               url:'/test',
-              data:{values}
+              data:values
           })
+          console.log(values)
         }
       });
 
