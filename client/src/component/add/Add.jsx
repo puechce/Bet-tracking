@@ -1,5 +1,8 @@
 import React from "react";
 import "./add.css";
+import { useFormik } from 'formik';
+const axios = require('axios');
+
 
 
 function empty(id){
@@ -7,15 +10,34 @@ function empty(id){
 }
 
 function Add(){
+    const formik = useFormik({
+        initialValues: {
+          name: '',
+          date: '',
+          bet: '',
+        },
+   
+        onSubmit: values => {
+          axios({
+              method:'post',
+              url:'/test',
+              data:{values}
+          })
+        }
+      });
+
     return ( 
         <add>
-            <h2>Ajoute ton pari 💪</h2>      
-            <form method="post" action="/test">
-                 <input id="match" name="name"  type="text" defaultValue="Quel match chef ? ⚽" onClick={()=>empty('match')} />
-                 <input type="date" name="date" defaultValue="Date du match ?"/>
-                 <input id="mise" name="bet" type="text" defaultValue="Tu mets combien ? 💸" onClick={()=>empty('mise')}/>
-                 <input type="submit" value="Boom !!! 💣 "/>
+            
+            <h2>Ajoute ton pari 💪</h2>    
+
+            <form  onSubmit={formik.handleSubmit}  >
+                 <input id="match" name="name" onChange={formik.handleChange} value={formik.values.name}  type="text" defaultValue="Quel match chef ? ⚽" onClick={()=>empty('match')} />
+                 <input type="date" name="date" onChange={formik.handleChange} value={formik.values.date} defaultValue="Date du match ?"/>
+                 <input id="mise" name="bet" onChange={formik.handleChange} value={formik.values.bet}  type="text" defaultValue="Tu mets combien ? 💸" onClick={()=>empty('mise')}/>
+                 <input type="submit"  value="Boom !!! 💣 "/>
             </form> 
+
         </add>
     )
 }
