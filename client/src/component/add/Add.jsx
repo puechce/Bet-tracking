@@ -17,7 +17,7 @@ function Add(){
         },
    
         onSubmit: values => {
-          axios({
+           await axios({
               method:'post',
               url:'https://bet-tracking.herokuapp.com/test',
               data:values
