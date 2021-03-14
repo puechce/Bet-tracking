@@ -4,6 +4,8 @@ const mongoose = require('mongoose')
 const path = require('path');
 var Bet = require("./schema.js");
 var bodyParser = require('body-parser');
+var cors = require('cors')
+app.use(cors());
 const uri = "mongodb+srv://puechce:Chaptal75@cluster0.npqtt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 
@@ -24,7 +26,7 @@ mongoose.connect(uri, {  useNewUrlParser: true,  useUnifiedTopology: true}).then
 // Serving the react app boilerplate
 app.use(express.static(path.join(__dirname, 'client/build')));
 
-app.get('/', (req, res) => {
+app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'client/build/index.html'))
 })
 
