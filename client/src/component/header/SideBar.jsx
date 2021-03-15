@@ -1,12 +1,13 @@
 import React from "react";
-import "./header.css";
+import "./sidebar.css";
 
-function Header(){
+function SideBar(){
     return ( 
         <header>
                 <h1>Bet Tracking</h1>
+                <h3>Page d'accueil</h3>
         </header>
     )
 }
 
-export default Header ; 
+export default SideBar ; 

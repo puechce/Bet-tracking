@@ -12,22 +12,22 @@ function empty(id){
 function Add(){
     const formik = useFormik({
         initialValues: {
-          name: '',
+          name: 'Quel match chef ? ⚽',
           date: '',
-          bet: '',
+          bet: 'Tu mets combien ? 💸',
         },
    
-        onSubmit: values => {
+        onSubmit: (values) => {
           axios({
               method:'post',
-              url:'/test',
+              url:'http://localhost:8080/test',
               data:values
           }).then(function (response) {
             console.log(response);
           }).catch(function (error) {
             console.log(error);
           });
-          console.log(values)
+          formik.resetForm()
         }
       });
 
