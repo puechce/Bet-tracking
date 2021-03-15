@@ -1,12 +1,13 @@
 .App {
-  min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  background: white;
-  font-family: Times, "Times New Roman", Georgia, serif;
+  flex-direction: row;
+  color: white;
+
 }
 
 .Body {
+  background: rgb(235, 234, 234);
   display: flex;
   flex-direction: row;
+  width: 100%;
 }

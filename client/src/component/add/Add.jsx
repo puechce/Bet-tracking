@@ -15,9 +15,9 @@ function Add(){
     }
     const formik = useFormik({
         initialValues: {
-          name: '',
+          name: 'Quel match chef ? ⚽',
           date: '',
-          bet: '',
+          bet: 'Tu mets combien ? 💸',
         },
         onSubmit : values =>{
             fetch('/test',{
@@ -40,7 +40,7 @@ function Add(){
           }).catch(function (error) {
             console.log(error);
           });
-          console.log(values)
+          formik.resetForm()
         }
     */
       });

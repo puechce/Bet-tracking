@@ -25,7 +25,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //Database connection 
-mongoose.Promise = global.Promise;
 mongoose.connect(uri, {  useNewUrlParser: true,  useUnifiedTopology: true}).then(() =>
  {  console.log('MongoDB Connected')}).catch(err => console.log(err))
 
@@ -33,14 +32,33 @@ mongoose.connect(uri, {  useNewUrlParser: true,  useUnifiedTopology: true}).then
 // Serving the react app boilerplate
 app.use(express.static(path.join(__dirname, 'client/build')));
 
-app.get('*', (req, res) => {
+app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'client/build/index.html'))
+})
+
+app.get('/disp', (req, res) => {
+
+  Bet.find({}).exec((err, result) => {
+      if (err) {
+          console.log("Error ", err);
+          return res.json({
+              success: false,
+              error: err
+          })
+      }
+      console.log(result)
+      res.json({
+          success: true,
+          data: result
+      })
+  })
 })
 
 app.post("/test", (req, res) => {
         var myData = new Bet(req.body);
         myData.save()
           .then(item => {
+            console.log('okey')
             res.send("item saved to database");
           })
           .catch(err => {
