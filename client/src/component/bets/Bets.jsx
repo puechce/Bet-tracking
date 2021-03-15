@@ -17,7 +17,7 @@ function Bets(){
 
     return ( 
         <bets>
-            <h1>Mes paris</h1>
+            <h1>Mes pars</h1>
             <button onClick={()=>display()}>Refresh</button>
         </bets>
     )
