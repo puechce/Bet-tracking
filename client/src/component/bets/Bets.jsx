@@ -5,7 +5,7 @@ import axios from 'axios';
 function display(){
     axios({
         method:"get",
-        url:"http://localhost:8080/disp"      
+        url:"/disp"      
     }).then(function (response) {
         console.log(response.data.data);
       }).catch(function (error) {
