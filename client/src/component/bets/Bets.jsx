@@ -1,24 +1,40 @@
-import React from "react";
+import React, {useEffect,useState} from "react";
 import "./bets.css";
 import axios from 'axios';
 
-function display(){
-    axios({
-        method:"get",
-        url:"/disp"      
-    }).then(function (response) {
-        console.log(response.data.data);
-      }).catch(function (error) {
-        console.log(error);
-      });
+//Current bets Display 
+function buildBet(item){
+    return(
+        <div className="bet-box">
+            <div>{item.name}</div>
+            <div>{item.bet} </div>
+            <button></button>
+        </div>
+    )
 }
 
 function Bets(){
+    const [data,setData]=useState([]);
+    //Select data in the database
+    useEffect(()=>{
+        axios.get("http://localhost:8080/disp").then((res)=> {
+            const newArr = res.data.data.map((item)=>{
+                return {
+                    name : item.name, 
+                    date : item.date, 
+                    bet : item.bet
+                };
+            });
+            setData(newArr)
+        });
+    },[])
 
     return ( 
         <bets>
-            <h1>Mes pars</h1>
-            <button onClick={()=>display()}>Refresh</button>
+            <h1>Mes paris</h1>
+            {data.map((item)=>{
+                 return <div>{buildBet(item)}</div>
+            })}
         </bets>
     )
 }
