@@ -3,3 +3,19 @@ bets {
     text-align: center;
     color: rgb(18, 170, 145);
 }
+
+.bet-box{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    width:20%;
+    padding: 1%;
+    justify-content: center;
+    box-shadow: 0px 0px 10px 3px rgb(212, 212, 212); 
+    border-color: black;
+    border: 2px;
+    border-radius: 10px;
+    background-color:white;
+}

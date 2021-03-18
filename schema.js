@@ -7,6 +7,7 @@ var Bet = new Schema ({
     tournament: String,
     date: Date,
     bet: Number, 
+    status: String
 });
 
 var Bet = mongoose.model('bet', Bet);

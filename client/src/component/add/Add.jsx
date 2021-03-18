@@ -15,6 +15,7 @@ function Add(){
           name: 'Quel match chef ? ⚽',
           date: '',
           bet: 'Tu mets combien ? 💸',
+          status: 'waiting'
         },
    
         onSubmit: (values) => {
@@ -34,7 +35,7 @@ function Add(){
     return ( 
         <add>
             
-            <h2>Ajoute ton pari 💪</h2>    
+            <h2>Ajoute ton paris 💪</h2>    
 
             <form  onSubmit={formik.handleSubmit}  >
                  <input id="match" name="name" onChange={formik.handleChange} value={formik.values.name}  type="text" defaultValue="Quel match chef ? ⚽" onClick={()=>empty('match')} />
