@@ -17,7 +17,7 @@ function Bets(){
     const [data,setData]=useState([]);
     //Select data in the database
     useEffect(()=>{
-        axios.get("http://localhost:8080/disp").then((res)=> {
+        axios.get("/disp").then((res)=> {
             const newArr = res.data.data.map((item)=>{
                 return {
                     name : item.name, 
