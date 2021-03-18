@@ -10,9 +10,6 @@ function empty(id){
 
 function Add(){
 
-    const options = {
-        method: 'POST',
-    }
     const formik = useFormik({
         initialValues: {
           name: 'Quel match chef ? ⚽',
