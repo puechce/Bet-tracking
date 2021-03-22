@@ -7,8 +7,11 @@ var Bet = new Schema ({
     tournament: String,
     date: Date,
     bet: Number, 
-    status: String
+    status: String,
+    gain: Number
 });
 
+
 var Bet = mongoose.model('bet', Bet);
-module.exports = Bet; 
+
+module.exports = Bet ; 

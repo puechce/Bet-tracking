@@ -1,0 +1,31 @@
+.Container {
+  width: 15%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  background: white;
+  align-items: center;
+  box-shadow: 0px 0px 10px 3px rgb(212, 212, 212);
+  border-radius: 10px;
+  justify-content: center;
+}
+
+Link {
+  width: auto;
+}
+.butt {
+  width: 10em;
+  padding: 5%;
+  box-shadow: 0px 0px 10px 3px rgb(212, 212, 212);
+  color: rgb(18, 170, 145);
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+}
+
+#titre {
+  font-size: 17px;
+  text-align: center;
+  color: rgb(18, 170, 145);
+}
