@@ -14,7 +14,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const port = process.env.PORT || 8080;
 const uri = "mongodb+srv://puechce:Chaptal75@cluster0.npqtt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
+app.use(express.static(path.join(__dirname, 'client/build')));
 
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client/build/index.html'))
+})
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -31,8 +35,6 @@ mongoose.connect(uri, {  useNewUrlParser: true,  useUnifiedTopology: true}).then
  {  console.log('MongoDB Connected')}).catch(err => console.log(err))
 
 
-// Serving the react app boilerplate
-app.use(express.static(path.join(__dirname, 'client/src')));
 
 
 //BodyParser
