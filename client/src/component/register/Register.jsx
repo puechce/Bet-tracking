@@ -24,7 +24,7 @@ function Register(){
         onSubmit: (values) => {
           axios({
               method:'post',
-              url:'http://localhost:8080/users/register',
+              url:'/users/register',
               data:values
           }).then(function (response) {
             console.log(response);

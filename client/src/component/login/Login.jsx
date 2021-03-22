@@ -24,7 +24,7 @@ function Login(){
         onSubmit: (values) => {
             axios({
                 method:'post',
-                url:'http://localhost:8080/login',
+                url:'/login',
                 data:values
             }).then(function (response) {
               if (response.data === true ){

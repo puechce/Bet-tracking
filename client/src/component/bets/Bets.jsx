@@ -4,7 +4,7 @@ import axios from 'axios';
 
 //If a bet is win or not
 function changeStatus(item,res){
-    axios.put('http://localhost:8080/status',{_id: item._id,status:res})
+    axios.put('/status',{_id: item._id,status:res})
     if (res==='win'){
         document.getElementById(item._id).style.backgroundColor='rgb(76, 226, 76)';
 
