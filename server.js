@@ -2,12 +2,19 @@ const express = require("express");
 const app = express();
 const mongoose = require('mongoose')
 const path = require('path');
-var Bet = require("./schema.js");
+var Bet = require("./schema/bet.js");
+var User = require("./schema/user.js");
 var bodyParser = require('body-parser');
 var cors = require('cors')
 app.use(cors());
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 const port = process.env.PORT || 8080;
 const uri = "mongodb+srv://puechce:Chaptal75@cluster0.npqtt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+
+
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -18,11 +25,6 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use(express.static('build'))
-
-var bodyParser = require('body-parser');
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 
 //Database connection 
 mongoose.connect(uri, {  useNewUrlParser: true,  useUnifiedTopology: true}).then(() =>
@@ -30,14 +32,18 @@ mongoose.connect(uri, {  useNewUrlParser: true,  useUnifiedTopology: true}).then
 
 
 // Serving the react app boilerplate
-app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(express.static(path.join(__dirname, 'client/src')));
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client/build/index.html'))
-})
 
+//BodyParser
+app.use(express.urlencoded({extended : false}));
+
+//Routes Authentification 
+app.use('/users', require('./routes/users'));
+
+// Main API Routes 
 app.get('/disp', (req, res) => {
-  Bet.find({}).exec((err, result) => {
+  Bet.find().exec((err, result) => {
       if (err) {
           console.log("Error ", err);
           return res.json({
@@ -45,7 +51,6 @@ app.get('/disp', (req, res) => {
               error: err
           })
       }
-      console.log(result)
       res.json({
           success: true,
           data: result
@@ -65,7 +70,54 @@ app.post("/test", (req, res) => {
           });
 });     
 
+app.put('/status',(req,res) => {
+  
+  Bet.findOne({_id: req.body._id}).exec((err,result)=>{
+    if (err) {
+      console.log("Error ", err);
+      return res.json({
+          success: false,
+          error: err
+      })
+    }
+    result.status = req.body.status
+    if (result.status==='win'){
+      result.gain = result.bet*2;
+    } else {
+      result.gain = -result.bet ; 
+    }
+    console.log(result)
+    result.save(function(err,updatedObject){
+      if(err){
+        console.log(err);
+        res.status(500).send();
+      } else {
+        res.send(updatedObject);
+      }
+    })
+});
+  
+});
 
+//Authentification 
+app.post('/login', (req, res) => {
+  console.log(req.body.pseudo)
+  User.findOne({pseudo: req.body.pseudo, password: req.body.password}).exec((err,result)=>{
+    if (err) {
+      console.log("Error ", err);
+      return res.json({
+          success: false,
+          error: err
+      })
+    }
+    if (result===null){
+      res.send(false)
+    } else {
+      res.send(true)
+    }
+  });
+  })
+;
 
 app.listen(port, () => {
     console.log(`----- listening on port ${port}`.success);

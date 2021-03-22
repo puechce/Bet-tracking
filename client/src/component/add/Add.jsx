@@ -15,7 +15,8 @@ function Add(){
           name: 'Quel match chef ? ⚽',
           date: '',
           bet: 'Tu mets combien ? 💸',
-          status: 'waiting'
+          status: 'waiting',
+          gain: 0
         },
    
         onSubmit: (values) => {
