@@ -13,7 +13,7 @@ function Stat(){
 
 
     useEffect(()=>{
-        axios.get("http://localhost:8080/dispbet",{
+        axios.get("/dispbet",{
             params:{
                 gambler: sessionStorage.getItem('pseudo')
             }
