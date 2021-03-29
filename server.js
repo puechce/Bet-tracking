@@ -43,7 +43,25 @@ app.use('/users', require('./routes/users'));
 
 // Main API Routes 
 app.get('/disp', (req, res) => {
-  Bet.find().exec((err, result) => {
+  console.log(req.query.gambler)
+  Bet.find({gambler: req.query.gambler,status:'waiting'}).exec((err, result) => {
+      if (err) {
+          console.log("Error ", err);
+          return res.json({
+              success: false,
+              error: err
+          })
+      }
+      res.json({
+          success: true,
+          data: result
+      })
+  })
+})
+
+app.get('/dispbet', (req, res) => {
+  console.log(req.query.gambler)
+  Bet.find({gambler: req.query.gambler}).exec((err, result) => {
       if (err) {
           console.log("Error ", err);
           return res.json({
@@ -82,7 +100,7 @@ app.put('/status',(req,res) => {
     }
     result.status = req.body.status
     if (result.status==='win'){
-      result.gain = result.bet*2;
+      result.gain = result.bet*result.odd;
     } else {
       result.gain = -result.bet ; 
     }
@@ -96,12 +114,47 @@ app.put('/status',(req,res) => {
       }
     })
 });
-  
 });
+
+app.put('/ini',(req,res) => {
+  
+  User.findOne({pseudo: req.body.pseudo}).exec((err,result)=>{
+    if (err) {
+      console.log("Error ", err);
+      return res.json({
+          success: false,
+          error: err
+      })
+    };
+    result.inibank = req.body.inibank;
+    result.save(function(err,updatedObject){
+      if(err){
+        console.log(err);
+        res.status(500).send();
+      } else {
+        res.send(updatedObject);
+      }
+    })
+})});
+
+app.get('/ini', (req, res) => {
+  User.find({pseudo: req.query.pseudo}).exec((err, result) => {
+      if (err) {
+          console.log("Error ", err);
+          return res.json({
+              success: false,
+              error: err
+          })
+      }
+      console.log(result)
+      res.json(result)
+  })
+})
+
+
 
 //Authentification 
 app.post('/login', (req, res) => {
-  console.log(req.body.pseudo)
   User.findOne({pseudo: req.body.pseudo, password: req.body.password}).exec((err,result)=>{
     if (err) {
       console.log("Error ", err);

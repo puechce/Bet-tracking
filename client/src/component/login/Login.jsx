@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./login.css";
 import { useFormik } from 'formik';
 import { useHistory } from "react-router-dom";
 
+
 const axios = require('axios');
+
 
 function empty(id){
     document.getElementById(id).value='';
@@ -12,8 +14,9 @@ function empty(id){
 
 function Login(){
 
+    const [psd,setPsd]=useState('')
     let history = useHistory();
-   
+
     const formik = useFormik({
         initialValues: {
           pseudo: '',
@@ -28,6 +31,8 @@ function Login(){
                 data:values
             }).then(function (response) {
               if (response.data === true ){
+                  setPsd(values.pseudo)
+                  sessionStorage.setItem('pseudo',values.pseudo)
                   history.push('/welcome')
               } 
             }).catch(function (error) {
@@ -36,7 +41,6 @@ function Login(){
         }
       });
       
-
     return ( 
         <add>
             <h2>Login</h2>    

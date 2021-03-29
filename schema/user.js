@@ -7,10 +7,18 @@ var User  = new Schema ({
         type  : String,
         required : true
     },
-  password:{
+    password:{
       type  : String,
       required : true
-  } 
+  },
+    inibank:{
+      type : Number,
+      required : false  
+  },
+    bank:{
+      type : Number, 
+      required : false 
+    }
   });
 
 var User = mongoose.model('User',User);
