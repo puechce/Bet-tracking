@@ -15,7 +15,7 @@ function SideBar(){
         },
 
         onSubmit: (values) => {
-            axios.put('http://localhost:8080/ini',{pseudo:sessionStorage.getItem('pseudo'),inibank:values.inibank})
+            axios.put('/ini',{pseudo:sessionStorage.getItem('pseudo'),inibank:values.inibank})
             .then(function (response){
                  console.log(response);
             }).catch(function (error){
