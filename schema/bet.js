@@ -7,8 +7,10 @@ var Bet = new Schema ({
     tournament: String,
     date: Date,
     bet: Number, 
+    odd: Number,
     status: String,
-    gain: Number
+    gain: Number,
+    gambler: String
 });
 
 

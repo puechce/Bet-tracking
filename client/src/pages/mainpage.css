@@ -1,5 +1,17 @@
-div {
+#full {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#half1 {
   display: flex;
   flex-direction: row;
   width: 100%;
+  height: 70%;
+}
+
+#half2 {
+  width: 100%;
+  height: 30%;
 }
